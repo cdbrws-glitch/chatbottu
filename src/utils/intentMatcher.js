@@ -59,8 +59,8 @@ export const matchIntent = (userInput) => {
     }
   }
 
-  // Aplicar threshold mínimo
-  if (bestMatch.confidence < 0.3) {
+  // Aplicar threshold mínimo más bajo (0.15 en lugar de 0.3)
+  if (bestMatch.confidence < 0.15) {
     bestMatch.intent = 'fallback'
   }
 
