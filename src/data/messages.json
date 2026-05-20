@@ -1,0 +1,97 @@
+{
+  "intents": {
+    "saludo": {
+      "keywords": ["hola", "buenas", "buen día", "buenas tardes", "buenas noches", "hey", "consulta"],
+      "responses": [
+        "Hola, soy el asistente virtual de Todos Unidos. ¿En qué puedo ayudarte?",
+        "Bienvenido. Puedo ayudarte con información, actividades, propuestas o cómo sumarte.",
+        "Hola 👋. ¿Qué necesitás hoy?"
+      ]
+    },
+    "que_es": {
+      "keywords": ["qué es todos unidos", "quiénes son", "todos unidos", "espacio", "movimiento"],
+      "responses": [
+        "Todos Unidos es un espacio de participación, organización y construcción colectiva para escuchar, ordenar propuestas y trabajar sobre temas concretos de la comunidad.",
+        "Somos un espacio abierto para vecinos, jóvenes, trabajadores, comerciantes, profesionales y toda persona que quiera aportar ideas o participar.",
+        "Todos Unidos es un movimiento territorial donde la comunidad trabaja junta para mejorar el barrio y resolver problemas concretos."
+      ]
+    },
+    "sumarse": {
+      "keywords": ["quiero sumarme", "participar", "militar", "colaborar", "ayudar", "anotarme", "unirme", "voluntario"],
+      "responses": [
+        "Genial. Para sumarte podemos tomar tus datos básicos: nombre, localidad o barrio, teléfono y en qué te gustaría colaborar.",
+        "¡Excelente! Podés participar acercando ideas, ayudando en actividades, difundiendo información o sumándote a equipos de trabajo."
+      ]
+    },
+    "actividades": {
+      "keywords": ["actividades", "qué hacen", "territorio", "recorridas", "acciones", "campaña", "reuniones"],
+      "responses": [
+        "Las actividades pueden incluir reuniones, recorridas, escucha barrial, encuentros con vecinos, trabajo territorial y difusión de propuestas.",
+        "Te puedo orientar sobre actividades disponibles o tomar tus datos para que el equipo te contacte."
+      ]
+    },
+    "reuniones": {
+      "keywords": ["reunión", "reuniones", "encuentro", "juntada", "cuándo se juntan", "horario"],
+      "responses": [
+        "Las reuniones se informan por los canales oficiales o por contacto directo con los equipos territoriales.",
+        "No tengo una agenda confirmada en este momento. Puedo tomar tu contacto para que te avisen cuando haya una reunión cerca."
+      ]
+    },
+    "propuestas": {
+      "keywords": ["propuesta", "idea", "proyecto", "sugerencia", "iniciativa", "aportar"],
+      "responses": [
+        "Podés dejar una propuesta concreta. Lo ideal es indicar tema, barrio o localidad, problema que resuelve y una posible solución.",
+        "Las mejores propuestas son simples: qué pasa, dónde pasa, a quién afecta y qué se podría hacer."
+      ]
+    },
+    "problemas_barriales": {
+      "keywords": ["problema", "barrio", "calle", "luz", "agua", "seguridad", "limpieza", "transporte", "escuela", "salud", "cloaca", "basura", "iluminación"],
+      "responses": [
+        "Contame el problema con estos datos: barrio o localidad, ubicación aproximada y una descripción breve.",
+        "Puedo registrar tu consulta territorial. Indicá barrio, tema y si querés dejar un contacto."
+      ]
+    },
+    "contacto": {
+      "keywords": ["contacto", "whatsapp", "teléfono", "hablar con alguien", "humano", "responsable"],
+      "responses": [
+        "Puedo derivarte a un contacto humano. Dejá tu nombre, localidad y teléfono para que el equipo pueda comunicarse.",
+        "Si preferís hablar con alguien directamente, dejá tu WhatsApp y el motivo de la consulta."
+      ]
+    },
+    "juventud": {
+      "keywords": ["joven", "jóvenes", "juventud", "estudiantes", "universidad", "secundario"],
+      "responses": [
+        "Los jóvenes pueden participar con ideas, comunicación, actividades, propuestas para su barrio o proyectos vinculados a educación, empleo, cultura y tecnología.",
+        "Si sos joven y querés sumarte, podés dejar tu nombre, localidad y tema de interés."
+      ]
+    },
+    "eventos": {
+      "keywords": ["evento", "eventos", "acto", "encuentro", "locro", "festival", "actividad"],
+      "responses": [
+        "No tengo eventos confirmados cargados ahora. Puedo tomar tu contacto para avisarte cuando haya novedades.",
+        "Los eventos confirmados deben cargarse desde el equipo. Si querés, dejá tu localidad y te avisamos cuando haya actividad cercana."
+      ]
+    },
+    "valores": {
+      "keywords": ["unidad", "peronismo", "comunidad", "justicia social", "trabajo", "producción"],
+      "responses": [
+        "Todos Unidos trabaja desde una mirada de unidad, comunidad, participación y soluciones concretas.",
+        "La idea central es escuchar, ordenar necesidades y construir respuestas posibles sin prometer cosas que no estén confirmadas."
+      ]
+    },
+    "despedida": {
+      "keywords": ["gracias", "chau", "listo", "nos vemos"],
+      "responses": [
+        "Gracias por comunicarte. Cuando quieras, podés volver a consultar.",
+        "Perfecto. Quedo disponible para ayudarte con otra consulta."
+      ]
+    },
+    "fallback": {
+      "responses": [
+        "Todavía estoy aprendiendo. ¿Podés reformular la consulta?",
+        "No tengo información confirmada sobre eso. Puedo derivar tu consulta al equipo si dejás un contacto.",
+        "Para no inventarte una respuesta, prefiero pedirte que lo escribas de otra forma o dejarlo para contacto humano."
+      ]
+    }
+  }
+}
