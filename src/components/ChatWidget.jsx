@@ -19,8 +19,8 @@ const ChatWidget = () => {
   const [inputValue, setInputValue] = useState('')
   const [isTyping, setIsTyping] = useState(false)
   const [userName, setUserName] = useState(null)
-  const [currentFlow, setCurrentFlow] = useState(null) // Para flujos especiales
-  const [flowData, setFlowData] = useState({}) // Datos temporales del flujo
+  const [currentFlow, setCurrentFlow] = useState(null)
+  const [flowData, setFlowData] = useState({})
   const messagesEndRef = useRef(null)
 
   const scrollToBottom = () => {
@@ -59,17 +59,14 @@ const ChatWidget = () => {
     setInputValue('')
     setIsTyping(true)
 
-    // Simular delay de escritura
     await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000))
 
-    // Procesar intención
     const { intent, confidence, extractedName } = matchIntent(inputValue)
 
     if (extractedName && !userName) {
       setUserName(extractedName)
     }
 
-    // Manejar flujos especiales
     if (currentFlow === 'sumarse') {
       handleSumarseFlow(inputValue)
     } else if (currentFlow === 'problemas_barriales') {
@@ -107,7 +104,6 @@ const ChatWidget = () => {
         timestamp: new Date(),
       }])
     } else {
-      // Respuesta normal
       const response = getResponse(intent, confidence)
       setChatMessages(prev => [...prev, {
         id: Date.now() + 1,
@@ -121,7 +117,6 @@ const ChatWidget = () => {
   }
 
   const handleSumarseFlow = (input) => {
-    const steps = ['nombre', 'localidad', 'telefono', 'interes']
     const currentStep = flowData.step || 0
 
     if (currentStep === 0) {
@@ -247,7 +242,7 @@ const ChatWidget = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -255,9 +250,8 @@ const ChatWidget = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             transition={{ duration: 0.3, type: 'spring', stiffness: 260, damping: 20 }}
-            className="absolute bottom-16 right-0 w-96 max-w-[calc(100vw-32px)] h-[600px] rounded-2xl shadow-2xl flex flex-col bg-gray-900 border border-gray-800 overflow-hidden"
+            className="w-96 max-w-[calc(100vw-48px)] h-[600px] rounded-2xl shadow-2xl flex flex-col bg-gray-900 border border-gray-800 overflow-hidden"
           >
-            {/* Header */}
             <div className="bg-gradient-to-r from-gray-800 to-gray-900 px-6 py-4 flex justify-between items-center border-b border-gray-700">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
@@ -266,29 +260,16 @@ const ChatWidget = () => {
                   <p className="text-xs text-gray-400">En línea</p>
                 </div>
               </div>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="text-gray-400 hover:text-white transition-colors"
-                  title="Minimizar"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M3 8a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
-                  </svg>
-                </button>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="text-gray-400 hover:text-white transition-colors"
-                  title="Cerrar"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </button>
-              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </button>
             </div>
 
-            {/* Messages */}
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4 bg-gray-900">
               {chatMessages.map((msg) => (
                 <ChatMessage key={msg.id} message={msg} userName={userName} />
@@ -297,7 +278,6 @@ const ChatWidget = () => {
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Input */}
             <form onSubmit={handleSendMessage} className="border-t border-gray-700 p-4 bg-gray-800">
               <div className="flex gap-2">
                 <input
@@ -323,23 +303,44 @@ const ChatWidget = () => {
         )}
       </AnimatePresence>
 
-      {/* Floating Button */}
+      {/* Floating Button - More Prominent */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full shadow-lg flex items-center justify-center text-white hover:shadow-xl transition-shadow"
-        title="Abrir chat"
+        whileHover={{ scale: 1.15 }}
+        whileTap={{ scale: 0.9 }}
+        className="relative w-20 h-20 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-full shadow-2xl flex items-center justify-center text-white hover:shadow-3xl transition-all"
       >
+        {/* Pulsing background */}
+        <motion.div
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute inset-0 rounded-full bg-blue-400 opacity-20"
+        ></motion.div>
+
+        {/* Icon */}
         {isOpen ? (
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+          <svg className="w-8 h-8 relative z-10" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>
         ) : (
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z" />
-            <path d="M2 5h16v.5a1 1 0 01-1 1h-14a1 1 0 01-1-1V5z" />
-          </svg>
+          <div className="relative z-10 flex flex-col items-center justify-center">
+            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z" />
+              <path d="M2 5h16v.5a1 1 0 01-1 1h-14a1 1 0 01-1-1V5z" />
+            </svg>
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">!</span>
+          </div>
+        )}
+
+        {/* Animated text when closed */}
+        {!isOpen && (
+          <motion.div
+            animate={{ y: [0, -5, 0] }}
+            transition={{ duration: 1, repeat: Infinity }}
+            className="absolute -bottom-12 whitespace-nowrap bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold"
+          >
+            👋 ¡Hola! Hablemos
+          </motion.div>
         )}
       </motion.button>
     </div>
