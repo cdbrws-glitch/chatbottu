@@ -48,7 +48,7 @@ export const matchIntent = (userInput) => {
       }
     }
 
-    // Calcular confianza
+    // Calcular confianza - solo necesita 1 keyword match
     const confidence = keywords.length > 0 ? matchCount / keywords.length : 0
 
     if (confidence > bestMatch.confidence) {
@@ -59,8 +59,8 @@ export const matchIntent = (userInput) => {
     }
   }
 
-  // Aplicar threshold mínimo más bajo (0.15 en lugar de 0.3)
-  if (bestMatch.confidence < 0.15) {
+  // Aplicar threshold mínimo muy bajo (0.1 = 10% de keywords)
+  if (bestMatch.confidence < 0.1) {
     bestMatch.intent = 'fallback'
   }
 
