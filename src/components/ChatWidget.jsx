@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, forwardRef, useImperativeHandle } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ChatMessage from './ChatMessage'
 import TypingIndicator from './TypingIndicator'
@@ -6,7 +6,7 @@ import { matchIntent } from '../utils/intentMatcher'
 import { saveToLocalStorage, getFromLocalStorage } from '../utils/storage'
 import messages from '../data/messages.json'
 
-const ChatWidget = () => {
+const ChatWidget = forwardRef((props, ref) => {
   const [isOpen, setIsOpen] = useState(false)
   const [chatMessages, setChatMessages] = useState([
     {
@@ -22,6 +22,11 @@ const ChatWidget = () => {
   const [currentFlow, setCurrentFlow] = useState(null)
   const [flowData, setFlowData] = useState({})
   const messagesEndRef = useRef(null)
+
+  // Exponer método para abrir chat desde componentes padres
+  useImperativeHandle(ref, () => ({
+    openChat: () => setIsOpen(true)
+  }))
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -252,17 +257,17 @@ const ChatWidget = () => {
             transition={{ duration: 0.3, type: 'spring', stiffness: 260, damping: 20 }}
             className="w-96 max-w-[calc(100vw-48px)] h-[600px] rounded-2xl shadow-2xl flex flex-col bg-gray-900 border border-gray-800 overflow-hidden"
           >
-            <div className="bg-gradient-to-r from-gray-800 to-gray-900 px-6 py-4 flex justify-between items-center border-b border-gray-700">
+            <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4 flex justify-between items-center border-b border-green-800">
               <div className="flex items-center gap-3">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <div className="w-3 h-3 bg-green-300 rounded-full animate-pulse"></div>
                 <div>
                   <h2 className="text-white font-semibold">Todos Unidos</h2>
-                  <p className="text-xs text-gray-400">En línea</p>
+                  <p className="text-xs text-green-100">En línea</p>
                 </div>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-green-100 hover:text-white transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -285,13 +290,13 @@ const ChatWidget = () => {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Escribí tu consulta…"
-                  className="flex-1 bg-gray-700 text-white rounded-full px-4 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+                  className="flex-1 bg-gray-700 text-white rounded-full px-4 py-2 text-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all"
                   disabled={isTyping}
                 />
                 <button
                   type="submit"
                   disabled={isTyping || !inputValue.trim()}
-                  className="bg-blue-500 hover:bg-blue-600 disabled:bg-gray-600 text-white rounded-full p-2 transition-colors flex items-center justify-center"
+                  className="bg-green-500 hover:bg-green-600 disabled:bg-gray-600 text-white rounded-full p-2 transition-colors flex items-center justify-center"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5.951-2.965 5.951 2.965a1 1 0 001.169-1.409l-7-14z" />
@@ -303,48 +308,46 @@ const ChatWidget = () => {
         )}
       </AnimatePresence>
 
-      {/* Floating Button - More Prominent */}
+      {/* Floating Button - Más Prominente */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.15 }}
         whileTap={{ scale: 0.9 }}
-        className="relative w-20 h-20 bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-full shadow-2xl flex items-center justify-center text-white hover:shadow-3xl transition-all"
+        className="relative w-24 h-24 bg-gradient-to-br from-green-500 via-green-500 to-green-600 rounded-full shadow-2xl flex items-center justify-center text-white hover:shadow-3xl transition-all"
       >
         {/* Pulsing background */}
         <motion.div
-          animate={{ scale: [1, 1.2, 1] }}
+          animate={{ scale: [1, 1.3, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="absolute inset-0 rounded-full bg-blue-400 opacity-20"
+          className="absolute inset-0 rounded-full bg-green-400 opacity-30"
         ></motion.div>
 
         {/* Icon */}
         {isOpen ? (
-          <svg className="w-8 h-8 relative z-10" fill="currentColor" viewBox="0 0 20 20">
+          <svg className="w-10 h-10 relative z-10" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>
         ) : (
-          <div className="relative z-10 flex flex-col items-center justify-center">
-            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5z" />
-              <path d="M2 5h16v.5a1 1 0 01-1 1h-14a1 1 0 01-1-1V5z" />
-            </svg>
-            <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold">!</span>
+          <div className="relative z-10 flex flex-col items-center justify-center text-3xl">
+            💬
           </div>
         )}
 
         {/* Animated text when closed */}
         {!isOpen && (
           <motion.div
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 1, repeat: Infinity }}
-            className="absolute -bottom-12 whitespace-nowrap bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="absolute -bottom-16 whitespace-nowrap bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg"
           >
-            👋 ¡Hola! Hablemos
+            ¿Necesitás ayuda?
           </motion.div>
         )}
       </motion.button>
     </div>
   )
-}
+})
+
+ChatWidget.displayName = 'ChatWidget'
 
 export default ChatWidget
