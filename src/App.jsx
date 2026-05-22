@@ -46,7 +46,9 @@ function Home() {
             <div>
               <h2 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 Tu voz importa.<br />
-                <span className="text-green-600">Hagamos cambios juntos.</span>
+                <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                  Hagamos cambios juntos.
+                </span>
               </h2>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
                 Somos un movimiento territorial donde vecinos, jóvenes, trabajadores y comerciantes comparten ideas y participan activamente en la construcción de nuestro barrio.
@@ -79,7 +81,7 @@ function Home() {
 
               <button
                 onClick={openChat}
-                className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 
+                className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 
                            text-white px-8 py-4 rounded-xl font-bold text-lg 
                            transform hover:scale-105 transition-all shadow-lg inline-flex items-center gap-3"
               >
@@ -90,14 +92,17 @@ function Home() {
 
             {/* Chat Preview / CTA Visual */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-green-400 to-green-600 rounded-2xl p-1 shadow-2xl">
+              <div className="bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-500 rounded-2xl p-1 shadow-2xl">
                 <div className="bg-gray-900 rounded-xl p-8 text-center">
                   <div className="text-6xl mb-4">💬</div>
                   <h3 className="text-2xl font-bold text-white mb-3">Nuestro Asistente está listo</h3>
-                  <p className="text-green-100 mb-6">Disponible 24/7 para responder tus preguntas</p>
+                  <p className="bg-gradient-to-r from-blue-200 to-cyan-200 bg-clip-text text-transparent mb-6 font-semibold">
+                    Disponible 24/7 para responder tus preguntas
+                  </p>
                   <button
                     onClick={openChat}
-                    className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg 
+                    className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 
+                               text-white font-bold py-3 px-8 rounded-lg 
                                transition-all transform hover:scale-105 w-full"
                   >
                     Abrí el chat
@@ -115,21 +120,21 @@ function Home() {
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
             {/* Feature 1 */}
-            <div className="bg-white rounded-xl p-8 border-2 border-green-200 hover:border-green-500 hover:shadow-xl transition-all">
+            <div className="bg-white rounded-xl p-8 border-2 border-blue-200 hover:border-blue-500 hover:shadow-xl transition-all">
               <div className="text-6xl mb-4">💬</div>
               <h4 className="text-2xl font-bold text-gray-900 mb-3">Consultas Rápidas</h4>
               <p className="text-gray-700">Preguntá lo que quieras. Nuestro asistente responde 24/7 sobre participación, eventos, propuestas y más.</p>
             </div>
 
             {/* Feature 2 */}
-            <div className="bg-white rounded-xl p-8 border-2 border-green-200 hover:border-green-500 hover:shadow-xl transition-all">
+            <div className="bg-white rounded-xl p-8 border-2 border-cyan-200 hover:border-cyan-500 hover:shadow-xl transition-all">
               <div className="text-6xl mb-4">📝</div>
               <h4 className="text-2xl font-bold text-gray-900 mb-3">Participación Real</h4>
               <p className="text-gray-700">Reporta problemas, haz propuestas, sumate a actividades. Tus acciones cuentan en decisiones reales.</p>
             </div>
 
             {/* Feature 3 */}
-            <div className="bg-white rounded-xl p-8 border-2 border-green-200 hover:border-green-500 hover:shadow-xl transition-all">
+            <div className="bg-white rounded-xl p-8 border-2 border-teal-200 hover:border-teal-500 hover:shadow-xl transition-all">
               <div className="text-6xl mb-4">👥</div>
               <h4 className="text-2xl font-bold text-gray-900 mb-3">Contacto Humano</h4>
               <p className="text-gray-700">El equipo siempre está disponible. Cuando necesites hablar con una persona, te conectamos.</p>
@@ -142,50 +147,54 @@ function Home() {
           <h3 className="text-4xl font-bold text-gray-900 mb-12 text-center">
             Sobre qué puedo ayudarte
           </h3>
-          <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 md:p-12 border-2 border-green-200">
+          <div className="bg-gradient-to-r from-blue-50 via-cyan-50 to-teal-50 rounded-2xl p-8 md:p-12 border-2 border-blue-200">
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h4 className="text-2xl font-bold text-green-700 mb-6">✅ Puedo ayudarte con:</h4>
+                <h4 className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-cyan-600 bg-clip-text text-transparent mb-6">
+                  ✅ Puedo ayudarte con:
+                </h4>
                 <ul className="space-y-3 text-gray-800">
                   <li className="flex items-center gap-3">
-                    <span className="text-green-500 font-bold">•</span>
+                    <span className="text-blue-500 font-bold">•</span>
                     Qué es Todos Unidos y nuestros valores
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="text-green-500 font-bold">•</span>
+                    <span className="text-cyan-500 font-bold">•</span>
                     Cómo sumarme al movimiento
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="text-green-500 font-bold">•</span>
+                    <span className="text-teal-500 font-bold">•</span>
                     Actividades, reuniones y eventos
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="text-green-500 font-bold">•</span>
+                    <span className="text-blue-500 font-bold">•</span>
                     Cómo hacer propuestas que importen
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="text-green-500 font-bold">•</span>
+                    <span className="text-cyan-500 font-bold">•</span>
                     Reportar problemas barriales
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="text-green-500 font-bold">•</span>
+                    <span className="text-teal-500 font-bold">•</span>
                     Programas de juventud
                   </li>
                 </ul>
               </div>
               <div>
-                <h4 className="text-2xl font-bold text-blue-700 mb-6">🎯 Lo que nos caracteriza:</h4>
+                <h4 className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-cyan-600 bg-clip-text text-transparent mb-6">
+                  🎯 Lo que nos caracteriza:
+                </h4>
                 <ul className="space-y-3 text-gray-800">
                   <li className="flex items-center gap-3">
                     <span className="text-blue-500 font-bold">✌️</span>
                     Somos cercanos, claros y respetuosos
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="text-blue-500 font-bold">📊</span>
+                    <span className="text-cyan-500 font-bold">📊</span>
                     Solo datos confirmados, nunca inventamos
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="text-blue-500 font-bold">🤝</span>
+                    <span className="text-teal-500 font-bold">🤝</span>
                     Si no sabemos, lo decimos y te derivamos
                   </li>
                   <li className="flex items-center gap-3">
@@ -193,11 +202,11 @@ function Home() {
                     Tus datos son privados y seguros
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="text-blue-500 font-bold">💾</span>
+                    <span className="text-cyan-500 font-bold">💾</span>
                     Todo local, sin servidores externos
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="text-blue-500 font-bold">👨‍💼</span>
+                    <span className="text-teal-500 font-bold">👨‍💼</span>
                     Equipo humano siempre disponible
                   </li>
                 </ul>
@@ -207,14 +216,14 @@ function Home() {
         </section>
 
         {/* Call to Action */}
-        <section className="text-center mb-24 bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-12 text-white">
+        <section className="text-center mb-24 bg-gradient-to-r from-blue-600 via-cyan-500 to-teal-500 rounded-2xl p-12 text-white">
           <h3 className="text-4xl font-bold mb-4">¿Listo para participar?</h3>
-          <p className="text-xl mb-8 text-green-50 max-w-2xl mx-auto">
+          <p className="text-xl mb-8 text-blue-50 max-w-2xl mx-auto">
             Abrí el chat ahora y conocé cómo puedes ser parte del cambio en tu barrio
           </p>
           <button
             onClick={openChat}
-            className="bg-white text-green-700 hover:bg-green-50 px-10 py-4 rounded-xl font-bold text-lg 
+            className="bg-white text-blue-700 hover:bg-blue-50 px-10 py-4 rounded-xl font-bold text-lg 
                        transition-all transform hover:scale-105 inline-flex items-center gap-3 shadow-lg"
           >
             <span className="text-2xl">💬</span>
@@ -227,7 +236,7 @@ function Home() {
       <footer className="bg-gray-900 border-t border-gray-800 text-center py-8 text-gray-400">
         <p>
           Todos Unidos © 2026 | Asistente Virtual | 
-          <a href="/chat-debug" className="text-green-400 hover:text-green-300 ml-2">
+          <a href="/chat-debug" className="text-cyan-400 hover:text-cyan-300 ml-2">
             Debug Panel
           </a>
         </p>
