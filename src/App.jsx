@@ -1,12 +1,14 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import ChatWidget from './components/ChatWidget'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import DebugPanel from './components/DebugPanel'
+import AdminPanel from './components/AdminPanel'
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/chat-debug" element={<DebugPanel />} />
         <Route path="*" element={<Home />} />
       </Routes>
@@ -15,7 +17,7 @@ function App() {
 }
 
 function Home() {
-  const chatRef = useRef(null)
+  const chatRef = React.useRef(null)
 
   const openChat = () => {
     if (chatRef.current) {
